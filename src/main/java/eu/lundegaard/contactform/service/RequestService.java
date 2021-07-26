@@ -56,51 +56,65 @@ public class RequestService {
         List<UserValidationErrorDTO> result = new ArrayList<>();
 
         if(requestTypeEntity == null){
-            UserValidationErrorDTO error = new UserValidationErrorDTO(ValidationErrorConstants.INVALID_REQUEST_TYPE);
-            error.setInvalidValue(request.getRequestType());
-            error.setPropertyPath("RequestDTO#requestType");
+            UserValidationErrorDTO error = UserValidationErrorDTO.builder()
+                    .invalidValue(request.getRequestType())
+                    .propertyPath("RequestDTO#requestType")
+                    .errorCode(ValidationErrorConstants.INVALID_REQUEST_TYPE)
+                    .build();
             result.add(error);
         }
 
         if(request.getName() == null || request.getName().isEmpty() || !ValidationUtils.isAlphabetic(request.getName())){
-            UserValidationErrorDTO error = new UserValidationErrorDTO(ValidationErrorConstants.INVALID_NAME);
-            error.setInvalidValue(request.getName());
-            error.setPropertyPath("RequestDTO#name");
+            UserValidationErrorDTO error = UserValidationErrorDTO.builder()
+                    .invalidValue(request.getName())
+                    .propertyPath("RequestDTO#name")
+                    .errorCode(ValidationErrorConstants.INVALID_NAME)
+                    .build();
             result.add(error);
         }
 
         if(request.getSurname() == null || request.getSurname().isEmpty()
                 || !ValidationUtils.isAlphabetic(request.getSurname())){
-            UserValidationErrorDTO error = new UserValidationErrorDTO(ValidationErrorConstants.INVALID_SURNAME);
-            error.setInvalidValue(request.getSurname());
-            error.setPropertyPath("RequestDTO#surname");
+            UserValidationErrorDTO error = UserValidationErrorDTO.builder()
+                    .invalidValue(request.getSurname())
+                    .propertyPath("RequestDTO#surname")
+                    .errorCode(ValidationErrorConstants.INVALID_SURNAME)
+                    .build();
             result.add(error);
         }
 
         if(request.getEmail() == null || request.getEmail().isEmpty() || !ValidationUtils.isValidEmail(request.getEmail())){
-            UserValidationErrorDTO error = new UserValidationErrorDTO(ValidationErrorConstants.INVALID_EMAIL);
-            error.setInvalidValue(request.getEmail());
-            error.setPropertyPath("RequestDTO#email");
+            UserValidationErrorDTO error = UserValidationErrorDTO.builder()
+                    .invalidValue(request.getEmail())
+                    .propertyPath("RequestDTO#email")
+                    .errorCode(ValidationErrorConstants.INVALID_EMAIL)
+                    .build();
             result.add(error);
         }
 
         if(request.getPolicyNumber() == null || request.getPolicyNumber().isEmpty()
                 || !ValidationUtils.isAlphaNumeric(request.getPolicyNumber())){
-            UserValidationErrorDTO error = new UserValidationErrorDTO(ValidationErrorConstants.INVALID_POLICY_NUMBER);
-            error.setInvalidValue(request.getPolicyNumber());
-            error.setPropertyPath("RequestDTO#policyNumber");
+            UserValidationErrorDTO error = UserValidationErrorDTO.builder()
+                    .invalidValue(request.getPolicyNumber())
+                    .propertyPath("RequestDTO#policyNumber")
+                    .errorCode(ValidationErrorConstants.INVALID_POLICY_NUMBER)
+                    .build();
             result.add(error);
         }
 
         if(request.getMessage() == null || request.getMessage().isEmpty()){
-            UserValidationErrorDTO error = new UserValidationErrorDTO(ValidationErrorConstants.EMPTY_MESSAGE);
-            error.setInvalidValue(request.getMessage());
-            error.setPropertyPath("RequestDTO#message");
+            UserValidationErrorDTO error = UserValidationErrorDTO.builder()
+                    .invalidValue(request.getMessage())
+                    .propertyPath("RequestDTO#message")
+                    .errorCode(ValidationErrorConstants.EMPTY_MESSAGE)
+                    .build();
             result.add(error);
         } else if(request.getMessage().length() > contactFormConfig.getMaxLength()){
-            UserValidationErrorDTO error = new UserValidationErrorDTO(ValidationErrorConstants.MESSAGE_TOO_LONG);
-            error.setInvalidValue(request.getMessage());
-            error.setPropertyPath("RequestDTO#message");
+            UserValidationErrorDTO error = UserValidationErrorDTO.builder()
+                    .invalidValue(request.getMessage())
+                    .propertyPath("RequestDTO#message")
+                    .errorCode(ValidationErrorConstants.MESSAGE_TOO_LONG)
+                    .build();
             result.add(error);
         }
 

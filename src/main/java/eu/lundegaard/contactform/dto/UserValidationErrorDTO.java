@@ -1,9 +1,11 @@
 package eu.lundegaard.contactform.dto;
 
 import eu.lundegaard.contactform.constant.ValidationErrorConstants;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class UserValidationErrorDTO {
 
     private String propertyPath;
@@ -11,12 +13,5 @@ public class UserValidationErrorDTO {
     private Object invalidValue;
 
     private ValidationErrorConstants errorCode;
-
-    private String translation;
-
-    public UserValidationErrorDTO(ValidationErrorConstants errorCode){
-        this.errorCode = errorCode;
-        this.translation = errorCode.getTranslation();
-    }
 
 }
