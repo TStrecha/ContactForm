@@ -1,3 +1,5 @@
+## Contact Form
+Contact form is a Spring boot project with integration of Thymeleaf that allows users to send feedback and stores this feedback in the database. 
 ## Running the project
 As IDE, Intellij IDEA is recommended. Start by cloning the repository with `git clone https://github.com/TStrecha/ContactForm`.
 
