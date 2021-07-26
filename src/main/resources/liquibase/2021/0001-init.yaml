@@ -1,0 +1,89 @@
+databaseChangeLog:
+- changeSet:
+    id: 0001-init-1
+    author: strechat
+    changes:
+    - createSequence:
+        sequenceName: request_seq_id
+- changeSet:
+    id: 0001-init-2
+    author: strechat
+    changes:
+    - createSequence:
+        sequenceName: request_type_seq_id
+- changeSet:
+    id: 0001-init-3
+    author: strechat
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: id
+            type: BIGINT
+        - column:
+            name: request_type_id
+            type: BIGINT
+        - column:
+            name: email
+            type: VARCHAR(255)
+        - column:
+            name: message
+            type: TEXT
+        - column:
+            name: name
+            type: VARCHAR(255)
+        - column:
+            name: policy_number
+            type: VARCHAR(255)
+        - column:
+            name: surname
+            type: VARCHAR(255)
+        tableName: request
+- changeSet:
+    id: 0001-init-4
+    author: strechat
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: id
+            type: BIGINT
+        - column:
+            name: name
+            type: VARCHAR(255)
+        tableName: request_type
+- changeSet:
+    id: 0001-init-5
+    author: strechat
+    changes:
+    - addPrimaryKey:
+        columnNames: id
+        constraintName: request_pkey
+        tableName: request
+- changeSet:
+    id: 0001-init-6
+    author: strechat
+    changes:
+    - addPrimaryKey:
+        columnNames: id
+        constraintName: request_type_pkey
+        tableName: request_type
+- changeSet:
+    id: 0001-init-7
+    author: strechat
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: request_type_id
+        baseTableName: request
+        constraintName: fkibmr315gqv6g75nhasnydst5w
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: request_type
+

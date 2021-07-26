@@ -1,0 +1,26 @@
+# db
+spring.datasource:
+  url: jdbc:postgresql://localhost/@appName@
+  username: @appName@
+  password: Nbd%kR$-=qX_n4#*
+  driver-class-name: org.postgresql.Driver
+spring.jpa.database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation: true
+
+# liquibase
+spring.liquibase:
+  enabled: true
+  change-log: classpath:liquibase/changelog.yaml
+
+# app
+server.port: 8080
+spring:
+  application:
+    name: @appName@
+spring.jpa.hibernate.ddl-auto: validate
+
+# swagger-ui
+swagger.enabled: true
+springfox.documentation.swagger.v2.path: /@appName@/swagger/v2/api-docs
+
+eu.lundegaard.contactform.max_length: 5000

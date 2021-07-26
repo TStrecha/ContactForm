@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Contact</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <link th:href="@{/styles/contact.css}" rel="stylesheet" />
+    <!-- Init -->
+    <script>
+        $(document).ready(function() {
+            M.CharacterCounter.init(document.getElementById('message'));
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+
+    </script>
+
+</head>
+<body>
+<div class="main">
+    <div class="alert" th:if="${result.getStatus()} == ${T(eu.lundegaard.contactform.constant.StatusEnum).FAILURE}">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        There were some errors while validating your request. Please, correct them and try to submit the form again:
+        <ul>
+            <li th:each="error : ${result.getErrors()}" th:text="${error.errorCode.translation}"></li>
+        </ul>
+    </div>
+
+    <div class="success" th:if="${result.getStatus()} == ${T(eu.lundegaard.contactform.constant.StatusEnum).SUCCESS}">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        Yes! We have got your message. We will look through it as soon as possible.
+    </div>
+
+    <div class="form">
+        <h2>Contact us</h2>
+        <form class="col s12" th:action="@{/contact-form}" th:object="${request}" method="post">
+            <div class="row">
+                <div class="input-field col s12">
+                    <select th:field="*{requestType}">
+                        <option value="" disabled selected>Please choose</option>
+                        <option th:each="type : ${requestTypes}" th:selected="${request.getPolicyNumber()} == ${type.id}" th:value="${type.id}" th:text="${type.name}"></option>
+                    </select>
+                    <label>Type of request</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input th:field="*{email}" type="email" class="validate" required>
+                    <label th:field="*{email}" th:value="${request.getEmail()}">E-Mail</label>
+                </div>
+                <div class="input-field col s6">
+                    <input th:field="*{policyNumber}" th:value="${request.getPolicyNumber()}" type="text" class="validate" required>
+                    <label th:field="*{policyNumber}">Policy number</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input th:field="*{name}" type="text" th:value="${request.getName()}" class="validate" required>
+                    <label th:field="*{name}">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input th:field="*{surname}" th:value="${request.getSurname()}" type="text" class="validate" required>
+                    <label th:field="*{surname}">Surname</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea th:field="*{message}" th:value="${request.getMessage()}" th:id="*{message}" class="materialize-textarea" th:data-length="${contactFormConfig.maxLength}" required></textarea>
+                    <label th:field="*{message}">Your request</label>
+                    <button class="btn waves-effect waves-light green" type="submit" name="action" style="margin-top: 20px;">Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

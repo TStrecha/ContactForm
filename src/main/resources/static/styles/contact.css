@@ -1,0 +1,75 @@
+body{
+    background: rgba(25, 25, 25, 255);
+    color: white;
+}
+
+.main{
+    position:relative;
+}
+
+.form {
+    margin-top: 5%;
+    background: rgba(50, 50, 50, 255);
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: solid 1px #6b6b6b;
+    border-radius: 2px;
+    padding: 20px;
+    box-shadow: 10px 10px 5px #343434;
+    width: 35%;
+
+}
+
+h2{
+    margin: 0 0 15px;
+}
+
+input{
+    color: white;
+}
+textarea{
+    color: white;
+}
+.select-dropdown{
+    background: rgba(35, 35, 35, 255);
+}
+.select-dropdown > li > span{
+    color: white;
+}
+.select-dropdown li.disabled > span{
+    color: rgba(120, 120, 120, 255);
+}
+#message{
+    height: 200px;
+}
+
+.alert {
+    padding: 20px;
+    margin: 20px 50px;
+    background-color: #f44336;
+    color: white;
+}
+
+.success {
+    padding: 20px;
+    margin: 20px 50px;
+    background-color: #2ccc4d;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
