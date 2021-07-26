@@ -10,7 +10,7 @@ Last but not least make sure that port `8080` isn't taken by another application
 If you have all this, you can run the main class `/src/main/java/eu.lundegaard.contactform/ContactFormApplication.java` or in root directory call `mvn spring-boot:run` command. Then, the contact form will be availible at [http://localhost:8080/contact-form](http://localhost:8080/contact-form)
 
 ### Running in docker
-To run the service in a docker, make sure you have a mysql container running in your docker. Then run `mvn clean package`. This will create a `.jar` executable file in the target directory.
+To run the service in a docker, make sure you have a PostgreSQL container running in your docker. Then run `mvn clean package`. This will create a `.jar` executable file in the target directory.
 
 Now you can proceed to run a command `docker build -t contact-form .` in the root directory of the service. This will build a new image called `contact-form`. Now, simply start the container using command `docker run -dp 3000:3000 contact-form` and the application should be available at your docker ip on port `3000`. Feel free to change the port of the docker container to your needs.
 
